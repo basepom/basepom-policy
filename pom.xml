@@ -12,15 +12,13 @@
 ~   See the License for the specific language governing permissions and
 ~   limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.basepom</groupId>
   <artifactId>basepom-policy</artifactId>
   <packaging>jar</packaging>
-  <version>2-SNAPSHOT</version>
+  <version>2</version>
   <name>basepom-policy</name>
   <description>
     Minimum set of policy applied by the basepom code.
@@ -33,7 +31,7 @@
     <connection>scm:git:git://github.com/basepom/basepom-policy.git</connection>
     <developerConnection>scm:git:git@github.com:basepom/basepom-policy.git</developerConnection>
     <url>https://github.com/basepom/basepom-policy</url>
-    <tag>HEAD</tag>
+    <tag>basepom-policy-2</tag>
   </scm>
 
   <licenses>
