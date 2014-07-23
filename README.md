@@ -1,4 +1,4 @@
-##basepom-policy
+## basepom-policy
 
 Minimum policy defaults for various checkers
 
