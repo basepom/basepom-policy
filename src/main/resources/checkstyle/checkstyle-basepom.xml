@@ -17,6 +17,15 @@
 "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
+  <module name="SuppressWarningsFilter" />
+  <module name="SuppressWithNearbyCommentFilter"/>
+
+  <module name="SuppressionFilter">
+    <property name="file"
+              default="/checkstyle/basepom-policy-suppressions.xml"
+              value="${basepom.checkstyle.suppression-file}"/>
+  </module>
+
   <module name="NewlineAtEndOfFile"/>
 
   <module name="FileTabCharacter">
@@ -31,6 +40,9 @@
 
   <module name="TreeWalker">
     <property name="cacheFile" value="${checkstyle.cache.file}"/>
+
+    <module name="SuppressWarningsHolder" />
+    <module name="FileContentsHolder"/>
 
     <!-- Checks for imports                              -->
     <!-- See http://checkstyle.sf.net/config_import.html -->
