@@ -54,17 +54,19 @@
     <properties>
         <!-- see http://docs.codehaus.org/display/MAVENUSER/POM+Element+for+Source+File+Encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.targetJdk>1.7</project.build.targetJdk>
+        <basepom.build.jvmsize>1024m</basepom.build.jvmsize>
 
         <!-- Plugin versions -->
-        <dep.plugin.clean.version>2.5</dep.plugin.clean.version>
-        <dep.plugin.deploy.version>2.8.1</dep.plugin.deploy.version>
+        <dep.plugin.clean.version>2.6.1</dep.plugin.clean.version>
+        <dep.plugin.deploy.version>2.8.2</dep.plugin.deploy.version>
         <dep.plugin.gpg.version>1.5</dep.plugin.gpg.version>
-        <dep.plugin.install.version>2.5.1</dep.plugin.install.version>
+        <dep.plugin.install.version>2.5.2</dep.plugin.install.version>
         <dep.plugin.jar.version>2.5</dep.plugin.jar.version>
-        <dep.plugin.license.version>2.6</dep.plugin.license.version>
-        <dep.plugin.release.version>2.5</dep.plugin.release.version>
-        <dep.plugin.resources.version>2.6</dep.plugin.resources.version>
-        <dep.plugin.scm.version>1.9</dep.plugin.scm.version>
+        <dep.plugin.license.version>2.7</dep.plugin.license.version>
+        <dep.plugin.release.version>2.5.1</dep.plugin.release.version>
+        <dep.plugin.resources.version>2.7</dep.plugin.resources.version>
+        <dep.plugin.scm.version>1.9.2</dep.plugin.scm.version>
         <dep.plugin.shade.version>2.3</dep.plugin.shade.version>
 
         <dep.findbugs.version>3.0.0</dep.findbugs.version>
@@ -222,6 +224,19 @@
                             <include>src/**</include>
                             <include>**/pom.xml</include>
                         </includes>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${dep.plugin.javadoc.version}</version>
+                    <configuration>
+                        <source>${project.build.targetJdk}</source>
+                        <target>${project.build.targetJdk}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <maxmemory>${basepom.build.jvmsize}</maxmemory>
+                        <additionalparam>-quiet</additionalparam>
                     </configuration>
                 </plugin>
 
