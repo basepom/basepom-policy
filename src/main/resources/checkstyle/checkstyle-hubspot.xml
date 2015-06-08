@@ -156,6 +156,9 @@
     <!-- Checks that hashCode is overridden when equals is -->
     <module name="EqualsHashCode"/>
 
+    <!-- Checks that @Override is always used when possible -->
+    <module name="MissingOverride"/>
+
     <!-- Checks that everything is named appropriately -->
     <module name="PackageName"/>
     <module name="TypeName"/>
@@ -175,7 +178,5 @@
     <module name="ParameterName"/>
     <module name="LocalVariableName"/>
     <module name="LocalFinalVariableName"/>
-    <module name="MissingOverride"/>
-
   </module>
 </module>
