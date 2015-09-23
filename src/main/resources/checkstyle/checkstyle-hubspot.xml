@@ -41,6 +41,11 @@
     <property name="message" value="Line has trailing spaces."/>
   </module>
 
+  <module name="RegexpMultiline">
+    <property name="format" value="\.printStackTrace\("/>
+    <property name="message" value="Replace printStackTrace with a logger"/>
+  </module>
+
   <module name="TreeWalker">
     <property name="cacheFile" value="${checkstyle.cache.file}"/>
 
@@ -182,7 +187,7 @@
       <property name="tagFormat" value="\S" />
       <property name="severity" value="ignore" />
       <property name="tagSeverity" value="error" />
-      <message key="javadoc.writeTag" value="{0} tag is not allowed, please remove" />
+      <message key="javadoc.writeTag" value="{0} tag is not allowed" />
     </module>
   </module>
 </module>
