@@ -41,7 +41,8 @@
     <property name="message" value="Line has trailing spaces."/>
   </module>
 
-  <module name="RegexpMultiline">
+  <!-- printStackTrace is always wrong -->
+  <module name="RegexpSingleline">
     <property name="format" value="\.printStackTrace\("/>
     <property name="message" value="Replace printStackTrace with a logger"/>
   </module>
