@@ -10,7 +10,7 @@ Minimum policy defaults for various checkers
 - no * imports
 - no redundant imports
 - java modifiers in JLS order
-- no dangeling statements for if()..., for()..., while()...
+- no dangling statements for `if()`..., `for()`..., `while()`...
 - no lowercase 'L' for long constants.
 
 ### license
