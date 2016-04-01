@@ -97,6 +97,14 @@
       <property name="ignoreEnhancedForColon" value="false"/>
     </module>
 
+    <module name="Indentation">
+      <property name="basicOffset" value="2"/>
+      <property name="caseIndent" value="2"/>
+      <property name="throwsIndent" value="2"/>
+      <property name="arrayInitIndent" value="2"/>
+      <property name="lineWrappingIndentation" value="4"/>
+    </module>
+
     <!-- Checks that these blocks have some text inside -->
     <module name="EmptyBlock">
       <property name="option" value="TEXT"/>
