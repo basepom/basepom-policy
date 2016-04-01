@@ -105,6 +105,14 @@
       <property name="lineWrappingIndentation" value="4"/>
     </module>
 
+    <module name="ImportOrder">
+      <property name="option" value="top"/>
+      <property name="groups" value="java,javax,org,com"/>
+      <property name="ordered" value="true"/>
+      <property name="separated" value="true"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
+
     <!-- Checks that these blocks have some text inside -->
     <module name="EmptyBlock">
       <property name="option" value="TEXT"/>
