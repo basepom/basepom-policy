@@ -96,7 +96,7 @@
 
     <!-- Checks that the outer type name and the file name match -->
     <module name="OuterTypeFilename">
-      <property name="id" value="EnforceClassAndFileNameToMatch" />
+      <property name="id" value="EnforceClassAndFilenameMatch" />
     </module>
 
     <!-- Checks that each top-level class has its own file -->
