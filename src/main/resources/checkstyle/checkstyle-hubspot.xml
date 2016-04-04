@@ -29,13 +29,17 @@
               value="${basepom.checkstyle.suppression-file}"/>
   </module>
 
-  <module name="NewlineAtEndOfFile"/>
+  <module name="NewlineAtEndOfFile">
+    <property name="id" value="EnforceNewlineAtEndOfFile" />
+  </module>
 
   <module name="FileTabCharacter">
+    <property name="id" value="DisallowTabs" />
     <property name="eachLine" value="true"/>
   </module>
 
   <module name="RegexpSingleline">
+    <property name="id" value="DisallowTrailingSpaces" />
     <!-- \s matches whitespace character, $ matches end of line. -->
     <property name="format" value="\s+$"/>
     <property name="message" value="Line has trailing spaces."/>
@@ -43,6 +47,7 @@
 
   <!-- printStackTrace is always wrong -->
   <module name="RegexpSingleline">
+    <property name="id" value="DisallowPrintStackTrace" />
     <property name="format" value="\.printStackTrace\("/>
     <property name="message" value="Replace printStackTrace with a logger"/>
   </module>
@@ -56,40 +61,61 @@
     <!-- Checks for imports                              -->
     <!-- See http://checkstyle.sf.net/config_import.html -->
     <module name="AvoidStarImport">
+      <property name="id" value="DisallowStarImports" />
       <property name="allowStaticMemberImports" value="true" />
     </module>
-    <module name="RedundantImport"/>
-    <module name="UnusedImports"/>
+    <module name="RedundantImport">
+      <property name="id" value="DisallowRedundantImports" />
+    </module>
+    <module name="UnusedImports">
+      <property name="id" value="DisallowUnusedImports" />
+    </module>
 
     <!-- Modifier Checks                                    -->
     <!-- See http://checkstyle.sf.net/config_modifiers.html -->
-    <module name="ModifierOrder"/>
+    <module name="ModifierOrder">
+      <property name="id" value="EnforceModifierOrder" />
+    </module>
 
     <!-- UnusedModifier in PMD is also only warning -->
     <module name="RedundantModifier">
+      <property name="id" value="DisallowRedundantModifiers" />
       <property name="severity" value="warning"/>
     </module>
 
     <!-- Checks for blocks. You know, those {}'s         -->
     <!-- See http://checkstyle.sf.net/config_blocks.html -->
-    <module name="NeedBraces"/>
+    <module name="NeedBraces">
+      <property name="id" value="EnforceCurlyBraces" />
+    </module>
 
     <!-- Checks that long constants are defined with an uppercase L -->
-    <module name="UpperEll"/>
+    <module name="UpperEll">
+      <property name="id" value="EnforceUppercaseEllForLongConstants" />
+    </module>
 
     <!-- Checks that the outer type name and the file name match -->
-    <module name="OuterTypeFilename"/>
+    <module name="OuterTypeFilename">
+      <property name="id" value="EnforceClassAndFileNameToMatch" />
+    </module>
 
     <!-- Checks that each top-level class has its own file -->
-    <module name="OneTopLevelClass"/>
+    <module name="OneTopLevelClass">
+      <property name="id" value="EnforceOneTopLevelClass" />
+    </module>
 
     <!-- Checks that package definitions and imports don't wrap lines -->
-    <module name="NoLineWrap"/>
+    <module name="NoLineWrap">
+      <property name="id" value="EnforcePackageAndImportStatementsDontWrap" />
+    </module>
 
     <!-- Makes sure that whitespace around generics is valid -->
-    <module name="GenericWhitespace"/>
+    <module name="GenericWhitespace">
+      <property name="id" value="EnforceWhitespaceAroundGenerics" />
+    </module>
 
     <module name="WhitespaceAround">
+      <property name="id" value="EnforceWhitespaceAroundStatements" />
       <property name="allowEmptyConstructors" value="true"/>
       <property name="allowEmptyMethods" value="true"/>
       <property name="allowEmptyTypes" value="true"/>
@@ -100,6 +126,7 @@
     </module>
 
     <module name="Indentation">
+      <property name="id" value="EnforceIndentation" />
       <property name="basicOffset" value="2"/>
       <property name="caseIndent" value="2"/>
       <property name="throwsIndent" value="2"/>
@@ -108,6 +135,7 @@
     </module>
 
     <module name="ImportOrder">
+      <property name="id" value="EnforceImportOrder" />
       <property name="option" value="top"/>
       <property name="groups" value="java,javax,org,com"/>
       <property name="ordered" value="true"/>
@@ -117,91 +145,139 @@
 
     <!-- Checks that these blocks have some text inside -->
     <module name="EmptyBlock">
+      <property name="id" value="DisallowEmptyBlocks" />
       <property name="option" value="TEXT"/>
       <property name="tokens" value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
     </module>
 
     <!-- Make sure that open braces are on the same line -->
-    <module name="LeftCurly"/>
+    <module name="LeftCurly">
+      <property name="id" value="EnforceOpenCurlyOnSameLine" />
+    </module>
 
     <!-- Make sure that close braces are on the same line -->
-    <module name="RightCurly"/>
     <module name="RightCurly">
+      <property name="id" value="EnforceCloseCurlyOnSameLine" />
+    </module>
+    <module name="RightCurly">
+      <property name="id" value="EnforceCloseCurlyAlone" />
       <property name="option" value="alone"/>
       <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT"/>
     </module>
 
-    <module name="OneStatementPerLine"/>
+    <module name="OneStatementPerLine">
+      <property name="id" value="EnforceOneStatementPerLine" />
+    </module>
 
     <!-- Checks that each variable is defined on its own line -->
-    <module name="MultipleVariableDeclarations"/>
+    <module name="MultipleVariableDeclarations">
+      <property name="id" value="DisallowMultipleVariableDeclarations" />
+    </module>
 
     <!-- Checks for Java style array declarations instead of C style -->
-    <module name="ArrayTypeStyle"/>
+    <module name="ArrayTypeStyle">
+      <property name="id" value="DisallowCStyleArrayDeclarations" />
+    </module>
 
     <!-- Checks state switch conditions don't fall through unless documented -->
-    <module name="FallThrough"/>
+    <module name="FallThrough">
+      <property name="id" value="DisallowSwitchFallThrough" />
+    </module>
 
     <!-- Checks that there are newlines between various tokens -->
     <module name="EmptyLineSeparator">
+      <property name="id" value="EnforceEmptyLineSeparator" />
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
       <property name="tokens" value="PACKAGE_DEF, IMPORT, CLASS_DEF, ENUM_DEF, INTERFACE_DEF, CTOR_DEF, STATIC_INIT, INSTANCE_INIT"/>
     </module>
 
     <module name="SeparatorWrap">
+      <property name="id" value="EnforceDotWrapsOnNextLine" />
       <property name="tokens" value="DOT"/>
       <property name="option" value="nl"/>
     </module>
     <module name="SeparatorWrap">
+      <property name="id" value="EnforceCommaWrapsOnSameLine" />
       <property name="tokens" value="COMMA"/>
       <property name="option" value="EOL"/>
     </module>
 
     <!-- Checks that finalizers are not declared -->
-    <module name="NoFinalizer"/>
+    <module name="NoFinalizer">
+      <property name="id" value="DisallowFinalizer" />
+    </module>
 
     <!-- Checks that there is no space between the method name and open parenthesis for parameter list -->
-    <module name="MethodParamPad"/>
+    <module name="MethodParamPad">
+      <property name="id" value="DisallowSpaceBeforeMethodParameters" />
+    </module>
 
     <!-- Checks that annotations are on their own line -->
     <module name="AnnotationLocation">
+      <property name="id" value="EnforceAnnotationsOnTheirOwnLine" />
       <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF"/>
     </module>
     <module name="AnnotationLocation">
+      <property name="id" value="EnforceParameterizedVariableAnnotationsOnTheirOwnLine" />
       <property name="tokens" value="VARIABLE_DEF"/>
       <property name="allowSamelineMultipleAnnotations" value="true"/>
     </module>
 
     <!-- Checks that catch blocks are not empty -->
     <module name="EmptyCatchBlock">
+      <property name="id" value="DisallowEmptyCatchBlock" />
       <property name="exceptionVariableName" value="expected|ignored"/>
     </module>
 
     <!-- Checks that hashCode is overridden when equals is -->
-    <module name="EqualsHashCode"/>
+    <module name="EqualsHashCode">
+      <property name="id" value="EnforceHashCodeOverridden" />
+    </module>
 
     <!-- Checks that everything is named appropriately -->
-    <module name="PackageName"/>
-    <module name="TypeName"/>
+    <module name="PackageName">
+      <property name="id" value="EnforcePackageNaming" />
+    </module>
+    <module name="TypeName">
+      <property name="id" value="EnforceClassNaming" />
+    </module>
     <module name="ClassTypeParameterName">
+      <property name="id" value="EnforceGenericClassTypeParameterNaming" />
       <property name="format" value="^[A-Z][A-Z0-9_]*$"/>
     </module>
     <module name="InterfaceTypeParameterName">
+      <property name="id" value="EnforceGenericInterfaceTypeParameterNaming" />
       <property name="format" value="^[A-Z][A-Z0-9_]*$"/>
     </module>
-    <module name="MethodName"/>
+    <module name="MethodName">
+      <property name="id" value="EnforceMethodNaming" />
+    </module>
     <module name="MethodTypeParameterName">
+      <property name="id" value="EnforceGenericMethodTypeParameterNaming" />
       <property name="format" value="^[A-Z][A-Z0-9_]*$"/>
     </module>
-    <module name="ConstantName"/>
-    <module name="StaticVariableName"/>
-    <module name="MemberName"/>
-    <module name="ParameterName"/>
-    <module name="LocalVariableName"/>
-    <module name="LocalFinalVariableName"/>
+    <module name="ConstantName">
+      <property name="id" value="EnforceStaticFinalFieldNaming" />
+    </module>
+    <module name="StaticVariableName">
+      <property name="id" value="EnforceStaticFieldNaming" />
+    </module>
+    <module name="MemberName">
+      <property name="id" value="EnforceFieldNaming" />
+    </module>
+    <module name="ParameterName">
+      <property name="id" value="EnforceMethodParameterNaming" />
+    </module>
+    <module name="LocalVariableName">
+      <property name="id" value="EnforceLocalVariableNaming" />
+    </module>
+    <module name="LocalFinalVariableName">
+      <property name="id" value="EnforceLocalFinalVariableNaming" />
+    </module>
 
     <!-- Checks that @author javadoc tag does not exist. -->
     <module name="WriteTag">
+      <property name="id" value="DisallowAuthorTag" />
       <property name="tag" value="@author" />
       <property name="tagFormat" value="\S" />
       <property name="severity" value="ignore" />
