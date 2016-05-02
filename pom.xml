@@ -52,8 +52,6 @@
     </developers>
 
     <properties>
-        <project.jdk7.home>${env.JAVA7_HOME}</project.jdk7.home>
-
         <!-- see http://docs.codehaus.org/display/MAVENUSER/POM+Element+for+Source+File+Encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.targetJdk>1.7</project.build.targetJdk>
@@ -74,10 +72,10 @@
         <dep.plugin.shade.version>2.4</dep.plugin.shade.version>
         <dep.plugin.dependency.version>2.10</dep.plugin.dependency.version>
         <dep.plugin.enforcer.version>1.3.1</dep.plugin.enforcer.version>
+        <dep.plugin.toolchains.version>1.1</dep.plugin.toolchains.version>
 
         <dep.findbugs.version>3.0.0</dep.findbugs.version>
-
-</properties>
+    </properties>
 
     <prerequisites>
         <maven>${basepom.maven.version}</maven>
@@ -301,6 +299,20 @@
                         <useAgent>true</useAgent>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-toolchains-plugin</artifactId>
+                    <version>${dep.plugin.toolchains.version}</version>
+                    <configuration>
+                        <toolchains>
+                            <jdk>
+                                <version>${project.build.targetJdk}</version>
+                                <vendor>sun</vendor>
+                            </jdk>
+                        </toolchains>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -324,6 +336,18 @@
                         <phase>verify</phase>
                         <goals>
                             <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -369,26 +393,6 @@
                         </executions>
                     </plugin>
                 </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>cross-compile</id>
-            <activation>
-                 <jdk>(1.7,]</jdk>
-            </activation>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <artifactId>maven-compiler-plugin</artifactId>
-                            <configuration>
-                                <compilerArguments children.combine="append">
-                                    <bootclasspath>${project.jdk7.home}/jre/lib/rt.jar:${project.jdk7.home}/jre/lib/jce.jar:${project.jdk7.home}/../classes/classes.jar</bootclasspath>
-                                </compilerArguments>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
             </build>
         </profile>
     </profiles>
