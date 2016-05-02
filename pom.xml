@@ -56,25 +56,27 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.targetJdk>1.7</project.build.targetJdk>
         <basepom.build.jvmsize>1024m</basepom.build.jvmsize>
-        <basepom.maven.version>3.0.5</basepom.maven.version>
+        <basepom.maven.version>3.3.3</basepom.maven.version>
 
-        <!-- Plugin versions -->
-        <dep.plugin.clean.version>2.6.1</dep.plugin.clean.version>
-        <dep.plugin.compiler.version>3.3</dep.plugin.compiler.version>
+        <!-- Plugin versions from foundation -->
+        <dep.plugin.clean.version>3.0.0</dep.plugin.clean.version>
+        <dep.plugin.compiler.version>3.5.1</dep.plugin.compiler.version>
         <dep.plugin.deploy.version>2.8.2</dep.plugin.deploy.version>
-        <dep.plugin.gpg.version>1.6</dep.plugin.gpg.version>
         <dep.plugin.install.version>2.5.2</dep.plugin.install.version>
-        <dep.plugin.jar.version>2.6</dep.plugin.jar.version>
-        <dep.plugin.license.version>2.11</dep.plugin.license.version>
-        <dep.plugin.release.version>2.5.2</dep.plugin.release.version>
         <dep.plugin.resources.version>2.7</dep.plugin.resources.version>
-        <dep.plugin.scm.version>1.9.4</dep.plugin.scm.version>
-        <dep.plugin.shade.version>2.4</dep.plugin.shade.version>
+        <dep.plugin.jar.version>2.6</dep.plugin.jar.version>
+        <dep.plugin.shade.version>2.4.3</dep.plugin.shade.version>
         <dep.plugin.dependency.version>2.10</dep.plugin.dependency.version>
-        <dep.plugin.enforcer.version>1.3.1</dep.plugin.enforcer.version>
+        <dep.plugin.enforcer.version>1.4.1</dep.plugin.enforcer.version>
+        <dep.plugin.release.version>2.5.3</dep.plugin.release.version>
+        <dep.plugin.scm.version>1.9.4</dep.plugin.scm.version>
         <dep.plugin.toolchains.version>1.1</dep.plugin.toolchains.version>
 
-        <dep.findbugs.version>3.0.0</dep.findbugs.version>
+        <!-- Plugin versions from oss -->
+        <dep.plugin.gpg.version>1.6</dep.plugin.gpg.version>
+        <dep.plugin.license.version>2.11</dep.plugin.license.version>
+
+        <dep.findbugs.version>3.0.1</dep.findbugs.version>
     </properties>
 
     <prerequisites>
@@ -232,6 +234,30 @@
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                                 <addClasspath>false</addClasspath>
                             </manifest>
+                            <manifestEntries>
+                                <X-BasePOM-Build-Id>${basepom.build.id}</X-BasePOM-Build-Id>
+                                <X-BasePOM-Name>${project.name}</X-BasePOM-Name>
+                                <X-BasePOM-Git-Commit-Id>${git.commit.id}</X-BasePOM-Git-Commit-Id>
+                            </manifestEntries>
+                            <manifestSections combine.children="append">
+                                <manifestSection>
+                                    <name>${project.groupId}:${project.artifactId}</name>
+                                    <manifestEntries>
+                                        <!-- This is actually the time when the build was done -->
+                                        <Build-Time>${git.build.time}</Build-Time>
+                                        <!-- Git specific properties -->
+                                        <Git-Branch>${git.branch}</Git-Branch>
+                                        <Git-Commit-Id>${git.commit.id}</Git-Commit-Id>
+                                        <Git-Commit-Id-Describe>${git.commit.id.describe}</Git-Commit-Id-Describe>
+                                        <Git-Remote-Origin-Url>${git.remote.origin.url}</Git-Remote-Origin-Url>
+                                        <!-- project information -->
+                                        <Project-ArtifactId>${project.artifactId}</Project-ArtifactId>
+                                        <Project-GroupId>${project.groupId}</Project-GroupId>
+                                        <Project-Name>${project.name}</Project-Name>
+                                        <Project-Version>${project.version}</Project-Version>
+                                    </manifestEntries>
+                                </manifestSection>
+                            </manifestSections>
                         </archive>
                     </configuration>
                 </plugin>
@@ -251,6 +277,7 @@
                         <mapping>
                             <java>SLASHSTAR_STYLE</java>
                             <xml>XML_PREFIX</xml>
+                            <yaml>SCRIPT_STYLE</yaml>
                         </mapping>
                         <strictCheck>true</strictCheck>
                         <aggregate>true</aggregate>
@@ -308,7 +335,7 @@
                         <toolchains>
                             <jdk>
                                 <version>${project.build.targetJdk}</version>
-                                <vendor>sun</vendor>
+                                <vendor>oracle</vendor>
                             </jdk>
                         </toolchains>
                     </configuration>
