@@ -17,32 +17,50 @@
 "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
+  <!-- http://checkstyle.sourceforge.net/config_filters.html -->
   <module name="SuppressWarningsFilter" />
   <module name="SuppressWithNearbyCommentFilter"/>
-
   <module name="SuppressionFilter">
     <property name="file"
               default="/checkstyle/basepom-policy-suppressions.xml"
               value="${basepom.checkstyle.suppression-file}"/>
   </module>
 
-  <module name="NewlineAtEndOfFile"/>
+  <!-- http://checkstyle.sourceforge.net/config_misc.html -->
+  <module name="NewlineAtEndOfFile">
+    <property name="lineSeparator" value="lf"/>
+  </module>
 
+  <!-- http://checkstyle.sourceforge.net/config_whitespace.html -->
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
   </module>
 
+  <!-- http://checkstyle.sourceforge.net/config_regexp.html -->
   <module name="RegexpSingleline">
     <!-- \s matches whitespace character, $ matches end of line. -->
     <property name="format" value="\s+$"/>
     <property name="message" value="Line has trailing spaces."/>
   </module>
 
+  <!-- =========================================================== -->
+  <!--                                                             -->
+  <!-- TreeWalker config                                           -->
+  <!--                                                             -->
+  <!-- =========================================================== -->
+
   <module name="TreeWalker">
     <property name="cacheFile" value="${checkstyle.cache.file}"/>
 
+    <!-- http://checkstyle.sourceforge.net/config_annotation.html -->
     <module name="SuppressWarningsHolder" />
+
+    <!-- http://checkstyle.sourceforge.net/config_filters.html -->
     <module name="FileContentsHolder"/>
+
+    <!-- Checks for blocks. You know, those {}'s         -->
+    <!-- See http://checkstyle.sf.net/config_blocks.html -->
+    <module name="NeedBraces"/>
 
     <!-- Checks for imports                              -->
     <!-- See http://checkstyle.sf.net/config_import.html -->
@@ -58,10 +76,7 @@
       <property name="severity" value="warning"/>
     </module>
 
-    <!-- Checks for blocks. You know, those {}'s         -->
-    <!-- See http://checkstyle.sf.net/config_blocks.html -->
-    <module name="NeedBraces"/>
-
+    <!-- http://checkstyle.sourceforge.net/config_misc.html -->
     <module name="UpperEll"/>
   </module>
 </module>
