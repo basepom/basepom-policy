@@ -18,7 +18,7 @@
     <groupId>org.basepom</groupId>
     <artifactId>basepom-policy</artifactId>
     <packaging>jar</packaging>
-    <version>5-SNAPSHOT</version>
+    <version>5</version>
     <name>basepom-policy</name>
     <description>
         Minimum set of policy applied by the basepom code.
@@ -31,7 +31,7 @@
         <connection>scm:git:git://github.com/basepom/basepom-policy.git</connection>
         <developerConnection>scm:git:git@github.com:basepom/basepom-policy.git</developerConnection>
         <url>https://github.com/basepom/basepom-policy</url>
-        <tag>HEAD</tag>
+        <tag>basepom-policy-5</tag>
     </scm>
 
     <licenses>
