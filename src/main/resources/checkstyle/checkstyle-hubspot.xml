@@ -21,7 +21,10 @@
   <property name="fileExtensions" value="java, properties, xml"/>
 
   <module name="SuppressWarningsFilter" />
-  <module name="SuppressWithNearbyCommentFilter"/>
+  <module name="SuppressWithNearbyCommentFilter">
+    <property name="commentFormat" value="SUPPRESS CHECKSTYLE FOR NEXT (\d+) LINES (\w+)"/>
+    <property name="influenceFormat" value="$1"/>
+  </module>
 
   <module name="SuppressionFilter">
     <property name="file"
