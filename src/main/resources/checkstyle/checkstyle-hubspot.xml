@@ -128,6 +128,10 @@
       <property name="ignoreEnhancedForColon" value="false"/>
     </module>
 
+    <module name="WhitespaceAfter">
+      <property name="tokens" value="COMMA, SEMI" />
+    </module>
+    
     <module name="Indentation">
       <property name="id" value="EnforceIndentation" />
       <property name="basicOffset" value="2"/>
