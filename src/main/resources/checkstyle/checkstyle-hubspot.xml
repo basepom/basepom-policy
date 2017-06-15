@@ -129,7 +129,8 @@
     </module>
 
     <module name="WhitespaceAfter">
-      <property name="tokens" value="COMMA, SEMI" />
+      <property name="id" value="EnforceWhitespaceAfterTokens" />
+      <property name="tokens" value="COMMA, SEMI, TYPECAST" />
     </module>
     
     <module name="Indentation">
