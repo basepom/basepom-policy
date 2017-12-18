@@ -132,7 +132,7 @@
       <property name="id" value="EnforceWhitespaceAfterTokens" />
       <property name="tokens" value="COMMA, SEMI, TYPECAST" />
     </module>
-    
+
     <module name="Indentation">
       <property name="id" value="EnforceIndentation" />
       <property name="basicOffset" value="2"/>
@@ -257,8 +257,14 @@
       <property name="id" value="EnforceGenericInterfaceTypeParameterNaming" />
       <property name="format" value="^[A-Z][A-Z0-9_]*$"/>
     </module>
+    <!-- Suppressed for test methods -->
     <module name="MethodName">
       <property name="id" value="EnforceMethodNaming" />
+    </module>
+    <!-- Suppressed for non-test methods -->
+    <module name="MethodName">
+      <property name="id" value="EnforceTestMethodNaming" />
+      <property name="format" value="^[a-z][a-zA-Z0-9_]*$" />
     </module>
     <module name="MethodTypeParameterName">
       <property name="id" value="EnforceGenericMethodTypeParameterNaming" />
