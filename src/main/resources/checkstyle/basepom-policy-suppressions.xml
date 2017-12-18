@@ -19,4 +19,6 @@
 
 <suppressions>
   <suppress files="[\\/]generated-sources[\\/]" checks=".*"/>
+  <suppress files="[\\/]main[\\/]java[\\/].*\.java" id="EnforceTestMethodNaming"/>
+  <suppress files="[\\/]test[\\/]java[\\/].*Test\.java" id="EnforceMethodNaming"/>
 </suppressions>
