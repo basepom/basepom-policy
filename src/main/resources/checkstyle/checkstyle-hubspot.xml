@@ -257,9 +257,11 @@
       <property name="id" value="EnforceGenericInterfaceTypeParameterNaming" />
       <property name="format" value="^[A-Z][A-Z0-9_]*$"/>
     </module>
+    <!-- Suppressed for test methods -->
     <module name="MethodName">
       <property name="id" value="EnforceMethodNaming" />
     </module>
+    <!-- Suppressed for non-test methods -->
     <module name="MethodName">
       <property name="id" value="EnforceTestMethodNaming" />
       <property name="format" value="^[a-z][a-zA-Z0-9_]*$" />
