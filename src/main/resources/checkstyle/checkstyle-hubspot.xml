@@ -122,7 +122,7 @@
       <property name="allowEmptyMethods" value="true"/>
       <property name="allowEmptyTypes" value="true"/>
       <property name="allowEmptyLoops" value="true"/>
-      <property name="allowEmptyCatchBlocks" value="true"/>
+      <property name="allowEmptyCatches" value="true"/>
       <property name="allowEmptyLambdas" value="true"/>
       <property name="ignoreEnhancedForColon" value="false"/>
     </module>
