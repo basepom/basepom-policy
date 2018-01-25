@@ -21,10 +21,6 @@
   <property name="fileExtensions" value="java, properties, xml"/>
 
   <module name="SuppressWarningsFilter" />
-  <module name="SuppressWithNearbyCommentFilter">
-    <property name="commentFormat" value="SUPPRESS CHECKSTYLE FOR NEXT (\d+) LINES (\w+)"/>
-    <property name="influenceFormat" value="$1"/>
-  </module>
 
   <module name="SuppressionFilter">
     <property name="file"
@@ -59,7 +55,10 @@
     <property name="cacheFile" value="${checkstyle.cache.file}"/>
 
     <module name="SuppressWarningsHolder" />
-    <module name="FileContentsHolder"/>
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="SUPPRESS CHECKSTYLE FOR NEXT (\d+) LINES (\w+)"/>
+      <property name="influenceFormat" value="$1"/>
+    </module>
 
     <!-- Checks for imports                              -->
     <!-- See http://checkstyle.sf.net/config_import.html -->
