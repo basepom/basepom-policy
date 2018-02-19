@@ -18,4 +18,4 @@ before_install:
   - export PATH=$M2_HOME/bin:$PATH
 
 install: mvn -DskipTests=true -Dbasepom.check.skip-all=true -Dbasepom.it.skip=true -B -fae install
-script: mvn -fae verify
+script: mvn -B -fae verify
