@@ -297,5 +297,9 @@
       <property name="tagSeverity" value="error" />
       <message key="javadoc.writeTag" value="{0} tag is not allowed" />
     </module>
+
+    <module name="IllegalImport">
+      <property name="illegalPkgs" value="edu.emory.mathcs.backport"/>
+    </module>
   </module>
 </module>
