@@ -241,7 +241,7 @@
       <property name="id" value="EnforceHashCodeOverridden" />
     </module>
 
-    <!-- Check that every class has a package and the package matches the directory structure -->
+    <!-- Check that every class has a package and that the package matches the directory structure -->
     <module name="PackageDeclaration">
       <property name="id" value="EnforcePackageDeclaration" />
       <property name="matchDirectoryStructure" value="true" />
