@@ -21,10 +21,6 @@
   <property name="fileExtensions" value="java, properties, xml"/>
 
   <module name="SuppressWarningsFilter" />
-  <module name="SuppressWithNearbyCommentFilter">
-    <property name="commentFormat" value="SUPPRESS CHECKSTYLE FOR NEXT (\d+) LINES (\w+)"/>
-    <property name="influenceFormat" value="$1"/>
-  </module>
 
   <module name="SuppressionFilter">
     <property name="file"
@@ -59,7 +55,10 @@
     <property name="cacheFile" value="${checkstyle.cache.file}"/>
 
     <module name="SuppressWarningsHolder" />
-    <module name="FileContentsHolder"/>
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="SUPPRESS CHECKSTYLE FOR NEXT (\d+) LINES (\w+)"/>
+      <property name="influenceFormat" value="$1"/>
+    </module>
 
     <!-- Checks for imports                              -->
     <!-- See http://checkstyle.sf.net/config_import.html -->
@@ -123,7 +122,7 @@
       <property name="allowEmptyMethods" value="true"/>
       <property name="allowEmptyTypes" value="true"/>
       <property name="allowEmptyLoops" value="true"/>
-      <property name="allowEmptyCatchBlocks" value="true"/>
+      <property name="allowEmptyCatches" value="true"/>
       <property name="allowEmptyLambdas" value="true"/>
       <property name="ignoreEnhancedForColon" value="false"/>
     </module>
@@ -170,7 +169,7 @@
     <module name="RightCurly">
       <property name="id" value="EnforceCloseCurlyAlone" />
       <property name="option" value="alone"/>
-      <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT"/>
+      <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT"/>
     </module>
 
     <module name="OneStatementPerLine">
@@ -242,6 +241,12 @@
       <property name="id" value="EnforceHashCodeOverridden" />
     </module>
 
+    <!-- Check that every class has a package and that the package matches the directory structure -->
+    <module name="PackageDeclaration">
+      <property name="id" value="EnforcePackageDeclaration" />
+      <property name="matchDirectoryStructure" value="true" />
+    </module>
+
     <!-- Checks that everything is named appropriately -->
     <module name="PackageName">
       <property name="id" value="EnforcePackageNaming" />
@@ -297,6 +302,10 @@
       <property name="severity" value="ignore" />
       <property name="tagSeverity" value="error" />
       <message key="javadoc.writeTag" value="{0} tag is not allowed" />
+    </module>
+
+    <module name="IllegalImport">
+      <property name="illegalPkgs" value="edu.emory.mathcs.backport"/>
     </module>
   </module>
 </module>
