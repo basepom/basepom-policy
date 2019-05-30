@@ -1,5 +1,12 @@
 # Changes
 
+## Version 6
+
+This version only supports Checkstyle 8 or better!
+
+* 2017-11-10 move SuppressWithNearbyCommentFilter into treewalker
+* 2017-11-10 remove FileContentsHolder
+
 ## Version 5
 
 * 2015-06-16 Align dependencies to basepom 12
