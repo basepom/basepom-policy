@@ -1,5 +1,11 @@
 # Changes
 
+## Version 7
+
+* 2019-07-08 Change travis to support OpenJDK 8 and 11
+* 2019-07-08 Support Checkstyle 8.2x
+* 2019-07-08 Align dependencies to match basepom 29
+
 ## Version 6
 
 This version only supports Checkstyle 8 or better!
