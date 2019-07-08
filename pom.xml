@@ -71,6 +71,7 @@
         <dep.plugin.enforcer.version>3.0.0-M2</dep.plugin.enforcer.version>
         <dep.plugin.release.version>2.5.3</dep.plugin.release.version>
         <dep.plugin.scm.version>1.11.2</dep.plugin.scm.version>
+        <dep.plugin.toolchains.version>3.0.0</dep.plugin.toolchains.version>
 
         <!-- Plugin versions from oss -->
         <dep.plugin.gpg.version>1.6</dep.plugin.gpg.version>
@@ -259,6 +260,12 @@
                 </plugin>
 
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-toolchains-plugin</artifactId>
+                    <version>${dep.plugin.toolchains.version}</version>
+                </plugin>
+
+                <plugin>
                     <groupId>com.mycila</groupId>
                     <artifactId>license-maven-plugin</artifactId>
                     <version>${dep.plugin.license.version}</version>
@@ -335,6 +342,27 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                        <configuration>
+                            <toolchains>
+                                <jdk>
+                                    <version>${project.build.targetJdk}</version>
+                                    <vendor>openjdk</vendor>
+                                </jdk>
+                            </toolchains>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
