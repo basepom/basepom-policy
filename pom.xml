@@ -355,23 +355,6 @@
 
     <profiles>
         <profile>
-            <id>new-jdk</id>
-            <activation>
-                <jdk>(1.8,)</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <configuration>
-                            <release>${project.build.targetJdk}</release>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>oss-release</id>
             <properties>
                 <!-- tests run in the preparation step of the release -->
