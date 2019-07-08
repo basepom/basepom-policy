@@ -17,6 +17,8 @@
 "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
+  <property name="cacheFile" value="${checkstyle.cache.file}"/>
+
   <!-- http://checkstyle.sourceforge.net/config_filters.html -->
   <module name="SuppressWarningsFilter" />
   <module name="SuppressionFilter">
@@ -49,7 +51,6 @@
   <!-- =========================================================== -->
 
   <module name="TreeWalker">
-    <property name="cacheFile" value="${checkstyle.cache.file}"/>
 
     <!-- http://checkstyle.sourceforge.net/config_filters.html -->
     <module name="SuppressWithNearbyCommentFilter"/>
