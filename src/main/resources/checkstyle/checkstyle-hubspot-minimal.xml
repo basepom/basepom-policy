@@ -45,7 +45,7 @@
       <property name="influenceFormat" value="$1"/>
     </module>
 
-    <!-- these seems out of scope for prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <!-- Checks for imports                              -->
     <!-- See http://checkstyle.sf.net/config_import.html -->
     <module name="AvoidStarImport">
@@ -79,13 +79,13 @@
       <property name="id" value="EnforceUppercaseEllForLongConstants" />
     </module>
 
-    <!-- this seems out of scope for prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <!-- Checks that the outer type name and the file name match -->
     <module name="OuterTypeFilename">
       <property name="id" value="EnforceClassAndFilenameMatch" />
     </module>
 
-    <!-- this seems out of scope for prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <!-- Checks that each top-level class has its own file -->
     <module name="OneTopLevelClass">
       <property name="id" value="EnforceOneTopLevelClass" />
@@ -99,19 +99,19 @@
       <property name="tokens" value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
     </module>
 
-    <!-- this seems out of scope for prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <!-- Checks that each variable is defined on its own line -->
     <module name="MultipleVariableDeclarations">
       <property name="id" value="DisallowMultipleVariableDeclarations" />
     </module>
 
-    <!-- TODO not currently handled by prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <!-- Checks for Java style array declarations instead of C style -->
     <module name="ArrayTypeStyle">
       <property name="id" value="DisallowCStyleArrayDeclarations" />
     </module>
 
-    <!-- this seems out of scope for prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <!-- Checks state switch conditions don't fall through unless documented -->
     <module name="FallThrough">
       <property name="id" value="DisallowSwitchFallThrough" />
@@ -136,7 +136,7 @@
       <property name="id" value="EnforceHashCodeOverridden" />
     </module>
 
-    <!-- this seems out of scope for prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <!-- Check that every class has a package and that the package matches the directory structure -->
     <module name="PackageDeclaration">
       <property name="id" value="EnforcePackageDeclaration" />
@@ -191,7 +191,7 @@
       <property name="id" value="EnforceLocalFinalVariableNaming" />
     </module>
 
-    <!-- this seems out of scope for prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <!-- Checks that @author javadoc tag does not exist. -->
     <module name="WriteTag">
       <property name="id" value="DisallowAuthorTag" />
@@ -202,7 +202,7 @@
       <message key="javadoc.writeTag" value="{0} tag is not allowed" />
     </module>
 
-    <!-- this seems out of scope for prettier-java -->
+    <!-- TODO replace with error-prone? -->
     <module name="IllegalImport">
       <property name="illegalPkgs" value="edu.emory.mathcs.backport, javafx.util"/>
     </module>
