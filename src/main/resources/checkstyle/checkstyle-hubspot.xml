@@ -305,7 +305,7 @@
     </module>
 
     <module name="IllegalImport">
-      <property name="illegalPkgs" value="edu.emory.mathcs.backport, javafx.util"/>
+      <property name="illegalPkgs" value="com.github.rholder.guava.shaded, edu.emory.mathcs.backport, javafx.util"/>
     </module>
   </module>
 </module>
