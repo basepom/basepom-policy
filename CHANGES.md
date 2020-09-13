@@ -1,5 +1,10 @@
 # Changes
 
+## Version 8
+* 2020-09-20 Only support JDK 9+ for building, resulting jar still works fine on JDK8
+* 2020-09-20 Switch to Github Actions, remove travis
+* 2020-09-20 Update CollectingManifestResourceTransformer to work with Shade plugin 3.2.3+
+
 ## Version 7
 
 * 2019-07-08 Change travis to support OpenJDK 8 and 11
