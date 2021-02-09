@@ -37,8 +37,6 @@
   </module>
 
   <module name="TreeWalker">
-    <property name="cacheFile" value="${checkstyle.cache.file}"/>
-
     <module name="SuppressWarningsHolder" />
     <module name="SuppressWithNearbyCommentFilter">
       <property name="commentFormat" value="SUPPRESS CHECKSTYLE FOR NEXT (\d+) LINES (\w+)"/>
