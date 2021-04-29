@@ -147,6 +147,7 @@
     <!-- Checks that everything is named appropriately -->
     <module name="PackageName">
       <property name="id" value="EnforcePackageNaming" />
+      <property name="format" value="^[a-z][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"/>
     </module>
     <module name="TypeName">
       <property name="id" value="EnforceClassNaming" />
