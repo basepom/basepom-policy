@@ -270,7 +270,7 @@
                     <artifactId>license-maven-plugin</artifactId>
                     <version>${dep.plugin.license.version}</version>
                     <configuration>
-                        <skip>false</skip>
+                        <skip>true</skip>
                         <skipExistingHeaders>false</skipExistingHeaders>
                         <failIfMissing>true</failIfMissing>
                         <header>${project.basedir}/src/main/resources/license/basepom-apache-license-header.txt</header>
