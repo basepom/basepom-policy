@@ -204,7 +204,7 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${dep.plugin.release.version}</version>
                     <configuration>
-                        <releaseProfiles>oss-release</releaseProfiles>
+                        <releaseProfiles>basepom-policy-release</releaseProfiles>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <mavenExecutorId>forked-path</mavenExecutorId>
                         <pushChanges>false</pushChanges>
