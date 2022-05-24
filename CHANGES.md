@@ -1,5 +1,8 @@
 # Changes
 
+## Version 9
+* 2022-05-24 Add new spotbugs suppression file for very noisy checks that were introduced in spotbugs 4.7.0.
+
 ## Version 8
 * 2020-09-20 Only support JDK 9+ for building, resulting jar still works fine on JDK8
 * 2020-09-20 Switch to Github Actions, remove travis
