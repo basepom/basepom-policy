@@ -23,7 +23,7 @@
 
     <artifactId>basepom-policy</artifactId>
     <packaging>jar</packaging>
-    <version>10</version>
+    <version>11-SNAPSHOT</version>
     <name>basepom-policy</name>
 
     <description>
@@ -37,7 +37,7 @@
         <connection>scm:git:git://github.com/basepom/basepom-policy.git</connection>
         <developerConnection>scm:git:git@github.com:basepom/basepom-policy.git</developerConnection>
         <url>https://github.com/basepom/basepom-policy</url>
-        <tag>basepom-policy-10</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
