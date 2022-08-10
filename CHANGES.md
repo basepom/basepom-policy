@@ -1,5 +1,11 @@
 # Changes
 
+## Version 10 - 2022-08-10
+
+* Update README.md
+* rework CollectingManifestResourceTransformer for JDK8
+* Align build to BasePOM OSS build
+
 ## Version 9
 * 2022-05-24 Add new spotbugs suppression file for very noisy checks that were introduced in spotbugs 4.7.0.
 

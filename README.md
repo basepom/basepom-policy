@@ -21,7 +21,7 @@ Defines a very minimal code style:
 - no lowercase 'L' for long constants. (`UpperEll`)
 
 ### spotbugs
-- 
+
 - suppress `THROWS_METHOD_THROWS_RUNTIMEEXCEPTION`, `THROWS_METHOD_THROWS_CLAUSE_THROWABLE` and `THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION`; those were added in version 4.7 of spotbugs and cause a lot of noise in existing code bases that use this policy jar.
 
 ### license
