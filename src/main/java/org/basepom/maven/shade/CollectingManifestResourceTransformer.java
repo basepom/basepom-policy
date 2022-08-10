@@ -15,8 +15,10 @@ package org.basepom.maven.shade;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.jar.Attributes;
@@ -71,7 +73,7 @@ public final class CollectingManifestResourceTransformer
     public void setManifestEntries(Map<String, Object> manifestEntries)
     {
         if (manifestEntries != null) {
-            this.manifestEntries = manifestEntries;
+            this.manifestEntries = new HashMap<>(manifestEntries);
         } else {
             this.manifestEntries = Collections.emptyMap();
         }
@@ -81,7 +83,7 @@ public final class CollectingManifestResourceTransformer
     public void setAdditionalAttributes(List<String> additionalAttributes)
     {
         if (additionalAttributes != null) {
-            this.additionalAttributes = additionalAttributes;
+            this.additionalAttributes = new ArrayList<>(additionalAttributes);
         } else {
             this.additionalAttributes = Collections.emptyList();
         }
@@ -111,13 +113,15 @@ public final class CollectingManifestResourceTransformer
                 }
             });
 
-            additionalAttributes.forEach(attribute -> {
-                final String attributeValue = attributes.getValue(attribute);
-                if (attributeValue != null) {
-                    String newValue = relocate(attributeValue, relocators);
-                    attributes.putValue(attribute, newValue);
-                }
-            });
+            if (additionalAttributes != null) {
+                additionalAttributes.forEach(attribute -> {
+                    final String attributeValue = attributes.getValue(attribute);
+                    if (attributeValue != null) {
+                        String newValue = relocate(attributeValue, relocators);
+                        attributes.putValue(attribute, newValue);
+                    }
+                });
+            }
         }
 
         // We just want to take the first manifest we come across as that's our project's manifest. This is the behavior
