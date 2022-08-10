@@ -1,3 +1,5 @@
+[![ci](https://github.com/basepom/basepom-policy/workflows/ci/badge.svg)](https://github.com/basepom/basepom-policy/actions?query=workflow%3Aci)[![Latest Release](https://maven-badges.herokuapp.com/maven-central/org.basepom/basepom-policy/badge.svg?style=flat)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.basepom%22%20AND%20a%3A%22basepom-policy%22)
+
 # basepom-policy - A minimal policy jar for BasePOM
 
 This is a policy jar that contains configuration and code
@@ -28,10 +30,8 @@ Defines a very minimal code style:
 
 - Add Apache license header without copyright line.
 
-## shade
+### shade
 
 - contains the `CollectingManifestResourceTransformer`. It collects all the additional sections in shaded jars and includes them in the final fat jar.
 
-
-
-[![ci](https://github.com/basepom/basepom-policy/workflows/ci/badge.svg)](https://github.com/basepom/basepom-policy/actions?query=workflow%3Aci)[![Latest Release](https://maven-badges.herokuapp.com/maven-central/org.basepom.maven/basepom-policy/badge.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.basepom%22%20AND%20a%3A%22basepom-policy%22)
+----
