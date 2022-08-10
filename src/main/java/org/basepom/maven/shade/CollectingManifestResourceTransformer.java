@@ -24,16 +24,13 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
-
 import org.apache.maven.plugins.shade.relocation.Relocator;
 import org.apache.maven.plugins.shade.resource.ManifestResourceTransformer;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Extends {@link ManifestResourceTransformer} to collect the additional sections
  * in the jar manifests. This keeps the build information from the internal jars in the
- * shaded jars. Submitted back to Maven as http://jira.codehaus.org/browse/MSHADE-165.
+ * shaded jars. Submitted back to Maven as <a href="https://issues.apache.org/jira/browse/MSHADE-165">MSHADE-165</a>.
  */
 public final class CollectingManifestResourceTransformer
         extends ManifestResourceTransformer
@@ -93,11 +90,7 @@ public final class CollectingManifestResourceTransformer
     @Override
     public boolean canTransformResource(String resource)
     {
-        if (JarFile.MANIFEST_NAME.equalsIgnoreCase(resource)) {
-            return true;
-        }
-
-        return false;
+        return JarFile.MANIFEST_NAME.equalsIgnoreCase(resource);
     }
 
     @Override
@@ -110,21 +103,21 @@ public final class CollectingManifestResourceTransformer
         if (relocators != null && !relocators.isEmpty()) {
             final Attributes attributes = loadedManifest.getMainAttributes();
 
-            for (final String attribute : defaultAttributes) {
+            defaultAttributes.forEach(attribute -> {
                 final String attributeValue = attributes.getValue(attribute);
                 if (attributeValue != null) {
                     String newValue = relocate(attributeValue, relocators);
                     attributes.putValue(attribute, newValue);
                 }
-            }
+            });
 
-            for (final String attribute : additionalAttributes) {
+            additionalAttributes.forEach(attribute -> {
                 final String attributeValue = attributes.getValue(attribute);
                 if (attributeValue != null) {
                     String newValue = relocate(attributeValue, relocators);
                     attributes.putValue(attribute, newValue);
                 }
-            }
+            });
         }
 
         // We just want to take the first manifest we come across as that's our project's manifest. This is the behavior
@@ -143,21 +136,21 @@ public final class CollectingManifestResourceTransformer
             Map<String, Attributes> existingRootSections = rootManifest.getEntries();
 
             // loop through the sections of the just loaded manifest
-            for (Map.Entry<String, Attributes> manifestSection : loadedManifest.getEntries().entrySet()) {
+            loadedManifest.getEntries().forEach((key, value) -> {
                 // Find the section that matches this entry or create a new one.
-                Attributes existingRootSectionAttributes = existingRootSections.get(manifestSection.getKey());
+                Attributes existingRootSectionAttributes = existingRootSections.get(key);
 
                 // create a new section if it does not already exist
                 if (existingRootSectionAttributes == null) {
                     existingRootSectionAttributes = new Attributes();
-                    existingRootSections.put(manifestSection.getKey(), existingRootSectionAttributes);
+                    existingRootSections.put(key, existingRootSectionAttributes);
                 }
 
                 // Add all attributes from that section to the manifest
-                for (Map.Entry<Object, Object> attributeEntry : manifestSection.getValue().entrySet()) {
-                    existingRootSectionAttributes.put(attributeEntry.getKey(), attributeEntry.getValue());
+                if (value != null) {
+                    value.forEach(existingRootSectionAttributes::put);
                 }
-            }
+            });
         }
     }
 
@@ -183,9 +176,13 @@ public final class CollectingManifestResourceTransformer
         }
 
         if (manifestEntries != null) {
-            for (Map.Entry<String, Object> entry : manifestEntries.entrySet()) {
-                attributes.put(new Attributes.Name(entry.getKey()), entry.getValue());
-            }
+            manifestEntries.forEach((k, v) -> {
+                if (v != null) {
+                    attributes.put(new Attributes.Name(k), v);
+                } else {
+                    attributes.remove(new Attributes.Name(k));
+                }
+            });
         }
 
         jos.putNextEntry(new JarEntry(JarFile.MANIFEST_NAME));
