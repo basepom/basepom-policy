@@ -12,74 +12,76 @@
 ~   See the License for the specific language governing permissions and
 ~   limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.basepom</groupId>
-        <artifactId>basepom-oss</artifactId>
-        <version>46</version>
-    </parent>
+  <parent>
+    <groupId>org.basepom</groupId>
+    <artifactId>basepom-oss</artifactId>
+    <version>46</version>
+  </parent>
 
-    <artifactId>basepom-policy</artifactId>
-    <packaging>jar</packaging>
-    <version>11-hubspot-SNAPSHOT</version>
-    <name>basepom-policy</name>
+  <artifactId>basepom-policy</artifactId>
+  <packaging>jar</packaging>
+  <version>11-hubspot-SNAPSHOT</version>
+  <name>basepom-policy</name>
 
-    <description>
-        Minimum set of policy applied by the basepom code.
-    </description>
+  <description>
+    Minimum set of policy applied by the basepom code.
+  </description>
 
-    <url>https://github.com/basepom/basepom-policy/</url>
-    <inceptionYear>2013</inceptionYear>
+  <url>https://github.com/basepom/basepom-policy/</url>
+  <inceptionYear>2013</inceptionYear>
 
-    <scm>
-        <connection>scm:git:git://github.com/basepom/basepom-policy.git</connection>
-        <developerConnection>scm:git:git@github.com:basepom/basepom-policy.git</developerConnection>
-        <url>https://github.com/basepom/basepom-policy</url>
-        <tag>HEAD</tag>
-    </scm>
+  <scm>
+    <connection>scm:git:git://github.com/basepom/basepom-policy.git</connection>
+    <developerConnection>scm:git:git@github.com:basepom/basepom-policy.git</developerConnection>
+    <url>https://github.com/basepom/basepom-policy</url>
+    <tag>HEAD</tag>
+  </scm>
 
-    <licenses>
-        <license>
-            <name>Apache License 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-    <developers>
-        <developer>
-            <id>hgschmie</id>
-            <name>Henning Schmiedehausen</name>
-            <email>henning@schmiedehausen.org</email>
-            <timezone>-8</timezone>
-        </developer>
-    </developers>
+  <developers>
+    <developer>
+      <id>hgschmie</id>
+      <name>Henning Schmiedehausen</name>
+      <email>henning@schmiedehausen.org</email>
+      <timezone>-8</timezone>
+    </developer>
+  </developers>
 
-    <properties>
-        <project.build.targetJdk>8</project.build.targetJdk>
-    </properties>
+  <properties>
+    <project.build.targetJdk>8</project.build.targetJdk>
+    <basepom.check.skip-license>true</basepom.check.skip-license>
+  </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>${dep.plugin.shade.version}</version>
-            <scope>provided</scope>
-            <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-annotations</artifactId>
-            <version>${dep.spotbugs.version}</version>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-shade-plugin</artifactId>
+      <version>${dep.plugin.shade.version}</version>
+      <scope>provided</scope>
+      <optional>true</optional>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
+      <version>${dep.spotbugs.version}</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
 </project>
