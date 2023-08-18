@@ -12,406 +12,76 @@
 ~   See the License for the specific language governing permissions and
 ~   limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
+  <parent>
     <groupId>org.basepom</groupId>
-    <artifactId>basepom-policy</artifactId>
-    <packaging>jar</packaging>
-    <version>6-hubspot-SNAPSHOT</version>
-    <name>basepom-policy</name>
-    <description>
-        Minimum set of policy applied by the basepom code.
-    </description>
+    <artifactId>basepom-oss</artifactId>
+    <version>46</version>
+  </parent>
 
-    <url>https://github.com/basepom/basepom-policy/</url>
-    <inceptionYear>2013</inceptionYear>
+  <artifactId>basepom-policy</artifactId>
+  <packaging>jar</packaging>
+  <version>11-hubspot-SNAPSHOT</version>
+  <name>basepom-policy</name>
 
-    <scm>
-        <connection>scm:git:git://github.com/basepom/basepom-policy.git</connection>
-        <developerConnection>scm:git:git@github.com:basepom/basepom-policy.git</developerConnection>
-        <url>https://github.com/basepom/basepom-policy</url>
-        <tag>HEAD</tag>
-    </scm>
+  <description>
+    Minimum set of policy applied by the basepom code.
+  </description>
 
-    <licenses>
-        <license>
-            <name>Apache License 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+  <url>https://github.com/basepom/basepom-policy/</url>
+  <inceptionYear>2013</inceptionYear>
 
-    <developers>
-        <developer>
-            <id>hgschmie</id>
-            <name>Henning Schmiedehausen</name>
-            <email>henning@schmiedehausen.org</email>
-            <timezone>-8</timezone>
-        </developer>
-    </developers>
+  <scm>
+    <connection>scm:git:git://github.com/basepom/basepom-policy.git</connection>
+    <developerConnection>scm:git:git@github.com:basepom/basepom-policy.git</developerConnection>
+    <url>https://github.com/basepom/basepom-policy</url>
+    <tag>HEAD</tag>
+  </scm>
 
-    <properties>
-        <!-- see http://docs.codehaus.org/display/MAVENUSER/POM+Element+for+Source+File+Encoding -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.targetJdk>1.8</project.build.targetJdk>
-        <project.build.releaseJdk>8</project.build.releaseJdk>
-        <basepom.build.jvmsize>1024m</basepom.build.jvmsize>
-        <basepom.maven.version>3.3.3</basepom.maven.version>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-        <!-- Plugin versions from foundation -->
-        <dep.plugin.clean.version>3.0.0</dep.plugin.clean.version>
-        <dep.plugin.compiler.version>3.7.0</dep.plugin.compiler.version>
-        <dep.plugin.deploy.version>2.8.2</dep.plugin.deploy.version>
-        <dep.plugin.install.version>2.5.2</dep.plugin.install.version>
-        <dep.plugin.resources.version>3.0.2</dep.plugin.resources.version>
-        <dep.plugin.jar.version>3.0.2</dep.plugin.jar.version>
-        <dep.plugin.shade.version>3.1.0</dep.plugin.shade.version>
-        <dep.plugin.javadoc.version>3.0.0-M1</dep.plugin.javadoc.version>
-        <dep.plugin.dependency.version>3.0.2</dep.plugin.dependency.version>
-        <dep.plugin.enforcer.version>3.0.0-M1</dep.plugin.enforcer.version>
-        <dep.plugin.release.version>2.5.3</dep.plugin.release.version>
-        <dep.plugin.scm.version>1.9.5</dep.plugin.scm.version>
-        <dep.plugin.toolchains.version>1.1</dep.plugin.toolchains.version>
+  <developers>
+    <developer>
+      <id>hgschmie</id>
+      <name>Henning Schmiedehausen</name>
+      <email>henning@schmiedehausen.org</email>
+      <timezone>-8</timezone>
+    </developer>
+  </developers>
 
-        <!-- Plugin versions from oss -->
-        <dep.plugin.gpg.version>1.6</dep.plugin.gpg.version>
-        <dep.plugin.license.version>3.0</dep.plugin.license.version>
+  <properties>
+    <project.build.targetJdk>8</project.build.targetJdk>
+    <basepom.check.skip-license>true</basepom.check.skip-license>
+  </properties>
 
-        <dep.findbugs.version>3.0.1</dep.findbugs.version>
-    </properties>
-
-    <prerequisites>
-        <maven>${basepom.maven.version}</maven>
-    </prerequisites>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>${dep.plugin.shade.version}</version>
-            <scope>provided</scope>
-            <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>annotations</artifactId>
-            <version>${dep.findbugs.version}</version>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-scm-plugin</artifactId>
-                    <version>${dep.plugin.scm.version}</version>
-                    <configuration>
-                        <connectionType>developerConnection</connectionType>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>${dep.plugin.deploy.version}</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>${dep.plugin.clean.version}</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>${dep.plugin.install.version}</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${dep.plugin.enforcer.version}</version>
-                    <configuration>
-                        <fail>true</fail>
-                        <failFast>false</failFast>
-                        <rules>
-                            <requireMavenVersion>
-                                <version>[${basepom.maven.version},)</version>
-                            </requireMavenVersion>
-                            <requireJavaVersion>
-                                <version>${project.build.targetJdk}</version>
-                            </requireJavaVersion>
-                        </rules>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>${dep.plugin.dependency.version}</version>
-                    <configuration>
-                        <skip>${basepom.check.skip-dependency}</skip>
-                        <failOnWarning>${basepom.check.fail-dependency}</failOnWarning>
-                        <ignoreNonCompile>true</ignoreNonCompile>
-                    </configuration>
-                </plugin>
-
-                <!-- Tweak the compiler to use more memory and use UTF-8 for the source code. -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${dep.plugin.compiler.version}</version>
-                    <configuration>
-                        <source>${project.build.targetJdk}</source>
-                        <target>${project.build.targetJdk}</target>
-                        <release>${project.build.releaseJdk}</release>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <maxmem>${basepom.build.jvmsize}</maxmem>
-                        <showWarnings>true</showWarnings>
-                        <compilerArguments>
-                            <Werror />
-                        </compilerArguments>
-                    </configuration>
-                </plugin>
-
-                <!-- Resource plugins should always use UTF-8 -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${dep.plugin.resources.version}</version>
-                    <configuration>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${dep.plugin.release.version}</version>
-                    <configuration>
-                        <releaseProfiles>oss-release</releaseProfiles>
-                        <autoVersionSubmodules>true</autoVersionSubmodules>
-                        <mavenExecutorId>forked-path</mavenExecutorId>
-                        <pushChanges>false</pushChanges>
-                        <localCheckout>true</localCheckout>
-                        <preparationGoals>clean install</preparationGoals>
-                        <useReleaseProfile>false</useReleaseProfile>
-                        <goals>deploy</goals>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${dep.plugin.jar.version}</version>
-                    <configuration>
-                        <!-- do not build an empty jar if the project is
-                             e.g. a pom project -->
-                        <skipIfEmpty>true</skipIfEmpty>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                                <addClasspath>false</addClasspath>
-                            </manifest>
-                            <manifestEntries>
-                                <X-BasePOM-Build-Id>${basepom.build.id}</X-BasePOM-Build-Id>
-                                <X-BasePOM-Name>${project.name}</X-BasePOM-Name>
-                                <X-BasePOM-Git-Commit-Id>${git.commit.id}</X-BasePOM-Git-Commit-Id>
-                            </manifestEntries>
-                            <manifestSections combine.children="append">
-                                <manifestSection>
-                                    <name>${project.groupId}:${project.artifactId}</name>
-                                    <manifestEntries>
-                                        <!-- This is actually the time when the build was done -->
-                                        <Build-Time>${git.build.time}</Build-Time>
-                                        <!-- Git specific properties -->
-                                        <Git-Branch>${git.branch}</Git-Branch>
-                                        <Git-Commit-Id>${git.commit.id}</Git-Commit-Id>
-                                        <Git-Commit-Id-Describe>${git.commit.id.describe}</Git-Commit-Id-Describe>
-                                        <Git-Remote-Origin-Url>${git.remote.origin.url}</Git-Remote-Origin-Url>
-                                        <!-- project information -->
-                                        <Project-ArtifactId>${project.artifactId}</Project-ArtifactId>
-                                        <Project-GroupId>${project.groupId}</Project-GroupId>
-                                        <Project-Name>${project.name}</Project-Name>
-                                        <Project-Version>${project.version}</Project-Version>
-                                    </manifestEntries>
-                                </manifestSection>
-                            </manifestSections>
-                        </archive>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>com.mycila</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <version>${dep.plugin.license.version}</version>
-                    <configuration>
-                        <skip>true</skip>
-                        <skipExistingHeaders>false</skipExistingHeaders>
-                        <failIfMissing>true</failIfMissing>
-                        <header>${project.basedir}/src/main/resources/license/basepom-apache-license-header.txt</header>
-                        <headerDefinitions>
-                            <headerDefinition>${project.basedir}/src/main/resources/license/xml-prefix.xml</headerDefinition>
-                        </headerDefinitions>
-                        <mapping>
-                            <java>SLASHSTAR_STYLE</java>
-                            <xml>XML_PREFIX</xml>
-                            <yaml>SCRIPT_STYLE</yaml>
-                        </mapping>
-                        <strictCheck>true</strictCheck>
-                        <aggregate>true</aggregate>
-                        <useDefaultExcludes>true</useDefaultExcludes>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <excludes>
-                            <exclude>.*/**</exclude>
-                            <exclude>**/*.md</exclude>
-                            <exclude>**/*.sh</exclude>
-                            <exclude>**/*.txt</exclude>
-                            <exclude>**/*.thrift</exclude>
-                            <exclude>**/*.proto</exclude>
-                            <exclude>**/*.g</exclude>
-                            <exclude>**/*.releaseBackup</exclude>
-                            <exclude>**/*.vm</exclude>
-                            <exclude>**/*.st</exclude>
-                            <exclude>**/*.raw</exclude>
-                            <exclude>**/*.ser</exclude>
-                            <exclude>**/src/license/**</exclude>
-                        </excludes>
-                        <includes>
-                            <include>src/**</include>
-                            <include>**/pom.xml</include>
-                        </includes>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${dep.plugin.javadoc.version}</version>
-                    <configuration>
-                        <source>${project.build.targetJdk}</source>
-                        <target>${project.build.targetJdk}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                        <maxmemory>${basepom.build.jvmsize}</maxmemory>
-                        <additionalparam>-quiet</additionalparam>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>${dep.plugin.gpg.version}</version>
-                    <configuration>
-                        <useAgent>true</useAgent>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-toolchains-plugin</artifactId>
-                    <version>${dep.plugin.toolchains.version}</version>
-                    <configuration>
-                        <toolchains>
-                            <jdk>
-                                <version>${project.build.targetJdk}</version>
-                                <vendor>oracle</vendor>
-                            </jdk>
-                        </toolchains>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>default</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-    <profiles>
-        <profile>
-            <id>oss-release</id>
-            <properties>
-                <!-- tests run in the preparation step of the release -->
-                <skipTests>true</skipTests>
-            </properties>
-            <build>
-                <plugins>
-                    <!-- oss requires a javadoc jar. Build one when releasing. -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- Sign artifacts using gpg for oss upload -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-shade-plugin</artifactId>
+      <version>${dep.plugin.shade.version}</version>
+      <scope>provided</scope>
+      <optional>true</optional>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
+      <version>${dep.spotbugs.version}</version>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
 </project>
