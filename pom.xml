@@ -24,7 +24,7 @@
 
   <artifactId>basepom-policy</artifactId>
   <packaging>jar</packaging>
-  <version>11-hubspot-SNAPSHOT</version>
+  <version>11.0-SNAPSHOT</version>
   <name>basepom-policy</name>
 
   <description>
