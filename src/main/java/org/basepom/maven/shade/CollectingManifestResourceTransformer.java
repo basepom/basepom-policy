@@ -11,7 +11,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.basepom.maven.shade;
+
+import static java.lang.String.format;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,17 +29,17 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
+
 import org.apache.maven.plugins.shade.relocation.Relocator;
 import org.apache.maven.plugins.shade.resource.ManifestResourceTransformer;
 
 /**
- * Extends {@link ManifestResourceTransformer} to collect the additional sections
- * in the jar manifests. This keeps the build information from the internal jars in the
- * shaded jars. Submitted back to Maven as <a href="https://issues.apache.org/jira/browse/MSHADE-165">MSHADE-165</a>.
+ * Extends {@link ManifestResourceTransformer} to collect the additional sections in the jar manifests. This keeps the build information from the internal jars
+ * in the shaded jars. Submitted back to Maven as <a href="https://issues.apache.org/jira/browse/MSHADE-165">MSHADE-165</a>.
  */
 public final class CollectingManifestResourceTransformer
-        extends ManifestResourceTransformer
-{
+        extends ManifestResourceTransformer {
+
     private final List<String> defaultAttributes = Arrays.asList("Export-Package",
             "Import-Package",
             "Provide-Capability",
@@ -56,22 +59,19 @@ public final class CollectingManifestResourceTransformer
     private long time = Long.MIN_VALUE;
 
     /**
-     * If set, the transformer will collect all sections from jar manifests
-     * and adds them to the main manifest.
+     * If set, the transformer will collect all sections from jar manifests and adds them to the main manifest.
      */
     public void setCollectSections(boolean collectSections) {
         this.collectSections = collectSections;
     }
 
     @Override
-    public void setMainClass( String mainClass )
-    {
+    public void setMainClass(String mainClass) {
         this.mainClass = mainClass;
     }
 
     @Override
-    public void setManifestEntries(Map<String, Object> manifestEntries)
-    {
+    public void setManifestEntries(Map<String, Object> manifestEntries) {
         if (manifestEntries != null) {
             this.manifestEntries = new HashMap<>(manifestEntries);
         } else {
@@ -80,8 +80,7 @@ public final class CollectingManifestResourceTransformer
     }
 
     @Override
-    public void setAdditionalAttributes(List<String> additionalAttributes)
-    {
+    public void setAdditionalAttributes(List<String> additionalAttributes) {
         if (additionalAttributes != null) {
             this.additionalAttributes = new ArrayList<>(additionalAttributes);
         } else {
@@ -90,15 +89,13 @@ public final class CollectingManifestResourceTransformer
     }
 
     @Override
-    public boolean canTransformResource(String resource)
-    {
+    public boolean canTransformResource(String resource) {
         return JarFile.MANIFEST_NAME.equalsIgnoreCase(resource);
     }
 
     @Override
     public void processResource(String resource, InputStream is, List<Relocator> relocators, long time)
-            throws IOException
-    {
+            throws IOException {
         Manifest loadedManifest = new Manifest(is);
 
         // Relocate the just loaded manifest
@@ -141,33 +138,25 @@ public final class CollectingManifestResourceTransformer
 
             // loop through the sections of the just loaded manifest
             loadedManifest.getEntries().forEach((key, value) -> {
-                // Find the section that matches this entry or create a new one.
-                Attributes existingRootSectionAttributes = existingRootSections.get(key);
-
                 // create a new section if it does not already exist
-                if (existingRootSectionAttributes == null) {
-                    existingRootSectionAttributes = new Attributes();
-                    existingRootSections.put(key, existingRootSectionAttributes);
-                }
+                Attributes existingRootSectionAttributes = existingRootSections.computeIfAbsent(key, k -> new Attributes());
 
                 // Add all attributes from that section to the manifest
                 if (value != null) {
-                    value.forEach(existingRootSectionAttributes::put);
+                    existingRootSectionAttributes.putAll(value);
                 }
             });
         }
     }
 
     @Override
-    public boolean hasTransformedResource()
-    {
+    public boolean hasTransformedResource() {
         return true;
     }
 
     @Override
     public void modifyOutputStream(JarOutputStream jos)
-            throws IOException
-    {
+            throws IOException {
         // If we didn't find a manifest, then let's create one.
         if (rootManifest == null) {
             rootManifest = new Manifest();
@@ -193,17 +182,29 @@ public final class CollectingManifestResourceTransformer
         rootManifest.write(jos);
     }
 
-    private String relocate(String originalValue, List<Relocator> relocators)
-    {
-        String newValue = originalValue;
+    static String relocate(String originalName, List<Relocator> relocators) {
+        String existingPrefix = null;
+        String relocatedName = null;
         for (Relocator relocator : relocators) {
-            String value;
-            do {
-                value = newValue;
-                newValue = relocator.relocateClass(value);
+            for (; ; ) {
+                relocatedName = relocator.relocateClass(originalName);
+                if (originalName.equals(relocatedName)) {
+                    break; // for(;;
+                }
+                // see if this is just a regular "add a prefix" relocation
+                if (relocatedName.endsWith(originalName)) {
+                    String prefix = relocatedName.substring(0, relocatedName.length() - originalName.length());
+                    if (prefix.equals(existingPrefix)) {
+                        String errorMessage = format("Detected loop when relocating %s to %s, prefix %s already applied!%nRelocation pattern (<pattern>) may be unanchored (not starting with '^')!", originalName,
+                                relocatedName, prefix);
+                        throw new IllegalStateException(errorMessage);
+                    }
+                    existingPrefix = prefix;
+                }
+
+                originalName = relocatedName;
             }
-            while (!value.equals(newValue));
         }
-        return newValue;
+        return relocatedName;
     }
 }
