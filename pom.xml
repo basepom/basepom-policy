@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.basepom</groupId>
         <artifactId>basepom-oss</artifactId>
-        <version>46</version>
+        <version>60</version>
     </parent>
 
     <artifactId>basepom-policy</artifactId>
@@ -58,7 +58,9 @@
     </developers>
 
     <properties>
-        <project.build.targetJdk>8</project.build.targetJdk>
+        <project.build.targetJdk>11</project.build.targetJdk>
+        <project.moduleName>org.basepom.policy</project.moduleName>
+        <basepom.javadoc.legacy-mode>true</basepom.javadoc.legacy-mode>
     </properties>
 
     <dependencies>
