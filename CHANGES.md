@@ -1,5 +1,11 @@
 # Changes
 
+## Version 11 - 2024-09-14
+* switch to `main` as the default branch
+* Fix issue #4 (endless loop with floating relocation patterns)
+* modern build system
+* Java 11 as baseline
+
 ## Version 10 - 2022-08-10
 
 * Update README.md
