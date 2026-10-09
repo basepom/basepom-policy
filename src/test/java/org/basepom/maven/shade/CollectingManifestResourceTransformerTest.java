@@ -14,7 +14,15 @@
 
 package org.basepom.maven.shade;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
+import java.util.jar.JarFile;
+import java.util.jar.JarOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import org.apache.maven.plugins.shade.relocation.Relocator;
 import org.apache.maven.plugins.shade.relocation.SimpleRelocator;
@@ -58,5 +66,25 @@ class CollectingManifestResourceTransformerTest {
                 "Detected loop when relocating prefab.shaded.com.google.common.SomeClass to prefab.shaded.prefab.shaded.com.google.common.SomeClass, "
                         + "prefix prefab.shaded. already applied!\nRelocation pattern (<pattern>) may be unanchored (not starting with '^')!",
                 exception.getMessage());
+    }
+
+    @Test
+    void testManifestEntryKeepsInputTime() throws IOException {
+        long time = 1_767_225_600_000L; // 2026-01-01T00:00:00Z, a multiple of the two-second DOS resolution
+        byte[] manifest = "Manifest-Version: 1.0\r\nX-Test: value\r\n\r\n".getBytes(StandardCharsets.UTF_8);
+
+        CollectingManifestResourceTransformer transformer = new CollectingManifestResourceTransformer();
+        transformer.processResource(JarFile.MANIFEST_NAME, new ByteArrayInputStream(manifest), Collections.emptyList(), time);
+
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        try (JarOutputStream jos = new JarOutputStream(bytes)) {
+            transformer.modifyOutputStream(jos);
+        }
+
+        try (ZipInputStream zis = new ZipInputStream(new ByteArrayInputStream(bytes.toByteArray()))) {
+            ZipEntry entry = zis.getNextEntry();
+            Assertions.assertEquals(JarFile.MANIFEST_NAME, entry.getName());
+            Assertions.assertEquals(time, entry.getTime());
+        }
     }
 }

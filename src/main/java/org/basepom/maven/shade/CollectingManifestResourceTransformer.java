@@ -178,7 +178,11 @@ public final class CollectingManifestResourceTransformer
             });
         }
 
-        jos.putNextEntry(new JarEntry(JarFile.MANIFEST_NAME));
+        JarEntry jarEntry = new JarEntry(JarFile.MANIFEST_NAME);
+        if (time != Long.MIN_VALUE) {
+            jarEntry.setTime(time);
+        }
+        jos.putNextEntry(jarEntry);
         rootManifest.write(jos);
     }
 
