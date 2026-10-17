@@ -22,7 +22,7 @@ jobs:
           java-version: 25
           distribution: temurin
           cache: maven
-          server-id: sonatype-nexus-snapshots
+          server-id: sonatype-central-portal
           server-username-env-var: CENTRAL_REPO_USER
           server-password-env-var: CENTRAL_REPO_PASSWORD
 
