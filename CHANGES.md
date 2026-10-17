@@ -1,5 +1,8 @@
 # Changes
 
+## Version 12 - 2026-10-16
+* ensure that builds are reproducible by setting timestamps correctly
+
 ## Version 11 - 2024-09-14
 * switch to `main` as the default branch
 * Fix issue #4 (endless loop with floating relocation patterns)
