@@ -16,6 +16,7 @@ package org.basepom.maven.shade;
 
 import static java.lang.String.format;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -186,6 +187,7 @@ public final class CollectingManifestResourceTransformer
         rootManifest.write(jos);
     }
 
+    @SuppressFBWarnings("HSM_HIDING_METHOD")
     static String relocate(String originalName, List<Relocator> relocators) {
         String existingPrefix = null;
         String relocatedName = null;
